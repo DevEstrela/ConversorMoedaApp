@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Pickerr from './src/components/Pickerr';
 import Result from './src/components/Result';
@@ -6,19 +6,31 @@ import api from './src/services/api'
 
 
 export default function App() {
-  const [moeda, setMoeda] = useState('')
+  const [moeda, setMoeda] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [meodaSelecionada, setMoedaSelecionada] = useState(null)
+  const [ moedaBvalor, setMoedaBvalor]= useState(0)
+
+  useEffect(() => {
+    async function loadMoedas(){
+      const response = await api.get('all')
+      console.log(response.data)
+    }
+  }, [])
+
+
  return (
    <View style={styles.container}>
 
       <View style={styles.areaPicker}>
           <Text style={styles.selectText }>Selecione sua Moeda</Text>
-          <Pickerr/>
+          <Pickerr />
       </View>
 
       <View style={styles.areaMoeda}>
         <Text style={styles.textMoeda }>Digite um valor para converter em (R$)</Text>
         <TextInput
-          onChangeText={(text) => setMoeda(text)}
+          onChangeText={(text) => setMoedaBvalor(text)}
           style={styles.input}
           keyboardType="numeric"
           placeholder='EX: 150'
