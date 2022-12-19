@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet} from 'react-native';
 
-export default class Result extends Component {
- render(){
+export default function Result(props){
   return (
     <View style={styles.container}>
-        <Text style={styles.text}> 3 USD </Text>
+        <Text style={styles.text}> {props.valorMoeda} {props.moedaSelecionada} </Text>
         <Text style={[styles.text, {fontSize: 17}] }> Corresponde a </Text>
-        <Text style={styles.text}> 19,90 </Text>
+        <Text style={styles.text}> {props.valorConvertido} </Text>
     </View>
    );
  }
-}
+
 const styles = StyleSheet.create({
 container:{
     backgroundColor: '#FFF',

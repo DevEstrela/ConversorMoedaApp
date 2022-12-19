@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 //https://economia.awesomeapi.com.br/json/
 //> rota para buscar EUR>BRL =  all/USD-BRL
@@ -6,3 +6,5 @@ import axios from "axios";
 const api = axios.create({
     baseURL: 'https://economia.awesomeapi.com.br/json/'
 })
+
+export default api;
